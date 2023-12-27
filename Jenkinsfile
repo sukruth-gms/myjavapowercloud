@@ -4,7 +4,7 @@ pipeline {
     tools {
         maven 'local_maven'
     }
-    stages{
+stages{
         stage('Build'){
             steps {
                 sh 'mvn clean package'
@@ -17,6 +17,12 @@ pipeline {
             }
         }
 
+        stage ('Deployments'){
+                             steps {
+                        sshagent(['Tomcat']) {
+                       sh "scp -v -o StrictHostKeyChecking=no **/*.war ec2-user@3.111.168.130:/opt/tomcat/webapps/"
+      }
+                    }
+                }
     }
 }
-
