@@ -11,7 +11,7 @@
     <title>Welcome to Powercloud</title>
 </head>
 <body>
-  <h1>DevOps and Cloud</h1>
+  <h1>DevOps and AWS Cloud</h1>
   <p>
     Join with us.
   </p>
