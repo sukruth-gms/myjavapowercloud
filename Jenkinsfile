@@ -4,7 +4,7 @@ pipeline {
     tools {
         maven 'local_maven'
     }
-stages{
+    stages{
         stage('Build'){
             steps {
                 sh 'mvn clean package'
@@ -13,16 +13,18 @@ stages{
                 success {
                     echo 'Archiving the artifacts'
                     archiveArtifacts artifacts: '**/target/*.war'
+                    emailext body: 'congratulation your build is success', subject: 'success build', to: 'jrs.jyotiranjanswain@gmail.com'
                 }
+                failure {
+                    emailext body: 'sorry your build is faild', subject: 'failure build', to: 'jrs.jyotiranjanswain@gmail.com'
+                }                
+            }
+        }
+        stage ('Deployments'){
+            steps {
+            echo 'successful Deploy'
             }
         }
 
-        stage ('Deployments'){
-                             steps {
-                        sshagent(['Tomcat']) {
-                       sh "scp -v -o StrictHostKeyChecking=no ./web/target/*.war ec2-user@3.111.168.130:/opt/tomcat/webapps/"
-      }
-                    }
-                }
     }
 }
