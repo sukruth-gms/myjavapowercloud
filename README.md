@@ -1,6 +1,6 @@
-# time-tracker
-Java (Maven) application for tracking time on the job.
+# Power Cloud
+Java-1.8 (Maven) application 
 
-Time tracker
+Power Cloud
 
-Good Night Students!!!
+Join with us!!!
