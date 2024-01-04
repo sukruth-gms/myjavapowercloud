@@ -13,10 +13,10 @@ pipeline {
                 success {
                     echo 'Archiving the artifacts'
                     archiveArtifacts artifacts: '**/target/*.war'
-                    emailext body: 'congratulation your build is success', subject: 'success build', to: 'jrs.jyotiranjanswain@gmail.com'
+                    emailext attachLog: true, body: 'congratulation your build is success', subject: 'success build', to: 'jrs.jyotiranjanswain@gmail.com'
                 }
                 failure {
-                    emailext body: 'sorry your build is faild', subject: 'failure build', to: 'jrs.jyotiranjanswain@gmail.com'
+                    emailext attachLog: true, body: 'sorry your build is faild', subject: 'failure build', to: 'jrs.jyotiranjanswain@gmail.com'
                 }                
             }
         }
