@@ -17,6 +17,6 @@ pipeline {
 		    sh "mvn clean verify sonar:sonar -Dsonar.projectKey=test -Dsonar.projectName='test'"
     }
 		    }
-	    }
-  }
+}
+}
 }
