@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        labels 'linux'
+        label 'linux'
     }
     
     tools {
