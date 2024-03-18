@@ -28,9 +28,7 @@ pipeline {
             post {
                 success {
                     script {
-                        withAWS(region: 'us-east-1') {
-                            sh 'aws s3 cp ./web/target/*.war s3://myanbucket'
-                        }
+                            sh 'aws configure set region us-east-1 && aws s3 cp ./web/target/*.war s3://myanbucket'
                     }
                 }
             }
