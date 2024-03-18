@@ -29,7 +29,7 @@ pipeline {
                 success {
                     script {
                         withAWS(region: 'us-east-1') {
-                            sh 'aws s3 cp ./web/target/*.war s3://myanbucket
+                            sh 'aws s3 cp ./web/target/*.war s3://myanbucket'
                         }
                     }
                 }
