@@ -4,20 +4,21 @@ pipeline {
         maven 'local_maven'
     }
 
-     environment {
-        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('jenkins-aws-secret-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('jenkins-aws-secret-access-key')
+        AWS_DEFAULT_REGION = 'us-east-1' // Specify your AWS region here
     }      
 
     stages {
         stage('Build') {
-            steps{
-            echo 'build'
+            steps {
+                echo 'build'
             }
         }
         stage('Test') {
             steps {
-           echo 'test'
+                echo 'test'
             }
         }
         stage('Publish') {
@@ -26,9 +27,11 @@ pipeline {
             }
             post {
                 success {
-                    //archiveArtifacts './web/target/*.war'
-                    sh 'aws configure set region us-east-1'
-                    sh 'aws s3 cp ./web/target/*.war s3://myanbucket'
+                    script {
+                        withAWS(region: 'us-east-1') {
+                            sh 'aws s3 cp ./web/target/*.war s3://myanbucket
+                        }
+                    }
                 }
             }
         }
